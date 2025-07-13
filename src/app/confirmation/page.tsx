@@ -21,9 +21,6 @@ export default function ConfirmationPage() {
                         <br />
                         Por favor revisa tu bandeja de entrada.
                     </p>
-                    <Button variant="outline" onClick={() => router.push("/login")}>
-                        Ir a iniciar sesión
-                    </Button>
                 </CardContent>
             </Card>
         </div>
