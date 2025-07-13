@@ -23,7 +23,8 @@ import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 
 const signUpSchema = z.object({
-  email: z.email({ message: "Correo inválido" }),
+  name: z.string().min(2, { message: "El nombre es requerido" }),
+  email: z.string().email({ message: "Correo inválido" }),
   password: z.string().min(6, { message: "Mínimo 6 caracteres" }),
 })
 
@@ -44,7 +45,7 @@ export function SignUpCard() {
     mutate(data, {
       onError: (error) => {
         toast.error(error.message)
-      }, 
+      },
       onSuccess: () => {
         router.push('/confirmation')
       }
@@ -56,6 +57,18 @@ export function SignUpCard() {
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-6">
+            <div className="grid gap-2">
+              <Label htmlFor="name">Nombre</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Tu nombre"
+                {...register("name")}
+              />
+              {errors.name && (
+                <span className="text-xs text-red-500">{errors.name.message}</span>
+              )}
+            </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Correo electrónico</Label>
               <Input

@@ -6,6 +6,6 @@ const registerUser = new RegisterUser(authService)
 
 export function useRegisterUser() {
     return useMutation({
-        mutationFn: ({ email, password }: { email: string; password: string }) => registerUser.execute(email, password),
+        mutationFn: ({ email, password, name }: { email: string; password: string, name: string }) => registerUser.execute(email, password, name),
     })
 }
