@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍽️ FoodiesBNB MVP
 
-## Getting Started
+Este proyecto es un MVP básico de **FoodiesBNB**.  
+Permite a los usuarios:
 
-First, run the development server:
+- Registrarse y confirmar su correo
+- Iniciar sesión
+- Listar restaurantes disponibles
+- Filtrar restaurantes por **nombre**, **ubicación** y **tipo de cocina**
+- Ver calificaciones de cada restaurante
+
+---
+
+## 🚀 Stack utilizado
+
+- **Next.js** – Framework React para frontend y SSR
+- **Supabase** – Base de datos y autenticación
+- **TailwindCSS** – Framework de estilos
+- **Shadcn/ui** – Componentes reutilizables estilizados
+- **Arquitectura hexagonal** – Para separación clara entre capas (infra, aplicación, dominio, UI)
+
+---
+
+## 🗂️ Rutas del proyecto
+
+| Ruta             | Descripción                                        |
+|------------------|----------------------------------------------------|
+| `/`        | Ventana principal de NextJS                        |
+| `/signup`        | Registro de nuevos usuarios                        |
+| `/confirmation`  | Mensaje de registro exitoso y aviso para verificar email |
+| `/login`         | Inicio de sesión                                   |
+| `/dashboard`     | Vista principal con el listado de restaurantes     |
+
+---
+
+## 🛠️ Instalación y ejecución local
 
 ```bash
+git clone https://github.com/will-berth/foodies-mvp.git
+cd foodies-mvp
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💡 Decisiones técnicas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Usé **Supabase** para gestionar autenticación y base de datos, ya que facilita mucho el desarrollo rápido de un MVP y permite desplegarlo de forma pública sin configurar servidores externos.
+- Utilicé **Shadcn/ui** porque cuenta con componentes estilizados y reutilizables que permiten construir una interfaz funcional.
+- Opté por una **arquitectura hexagonal** para mantener una estructura clara, desacoplar la lógica de negocio de la infraestructura y facilitar la escalabilidad futura.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ⏱️ Si tuviera más tiempo...
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Dockerizar** el proyecto para facilitar su despliegue y mantener consistencia en distintos entornos.
+- Separar el frontend y backend, usando un backend personalizado o utilizando el **Supabase server client** para un mayor control sobre la lógica del servidor.
+- Agregar una funcionalidad para que los usuarios puedan **marcar restaurantes como favoritos**.
+- Implementar **paginación** y mejorar los filtros de búsqueda.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧩 Retos técnicos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Nunca había utilizado **Supabase** antes de esta prueba. Su sistema de autenticación y gestión de base de datos es muy accesible y permite implementar flujos de registro y verificación de correo de forma muy sencilla.
+- Toda la documentación oficial de Supabase es clara y suficiente para implementar estas funcionalidades sin complicaciones.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## ✅ Estado del proyecto
+
+✔️ MVP funcional completado y desplegado.  
+🔗 [Vercel](https://foodies-mvp.vercel.app/login)
