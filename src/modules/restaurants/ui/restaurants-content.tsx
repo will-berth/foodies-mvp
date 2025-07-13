@@ -1,15 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Calendar, Heart, Star, Utensils } from "lucide-react";
+import { Calendar, Eye, Heart, Star, Utensils } from "lucide-react";
 import { Restaurant } from "../domain/Restaurant";
 
 interface RestaurantsContentProps {
     restaurants: Restaurant[] | undefined;
     onClearFilters: () => void;
+    handleViewComments: (restaurant: Restaurant) => void;
 }
+
 export function RestaurantsContent({
     restaurants,
     onClearFilters,
+    handleViewComments
 }: RestaurantsContentProps) {
     if (restaurants?.length === 0) {
         return (
@@ -77,6 +80,15 @@ export function RestaurantsContent({
                             </div>
                             <span className="text-sm font-medium">{restaurant.average_rating || 0}</span>
                             <span className="text-xs text-muted-foreground">({restaurant.raiting_count})</span>
+
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-6 w-6 ml-auto hover:bg-muted/50"
+                                onClick={() => handleViewComments(restaurant)}
+                            >
+                                <Eye className="h-4 w-4 text-muted-foreground" />
+                            </Button>
                         </div>
 
                         <Button size="sm" className="w-full gap-2 bg-primary hover:bg-primary/90">

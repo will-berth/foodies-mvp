@@ -13,6 +13,8 @@ import { useGetAllLocations } from "@/modules/locations/application/useGetAllLoc
 import { useGetAllCuisineTypes } from "@/modules/cuisines/application/useGetAllCuisineTypes"
 import { useGetAllRestaurants } from "../application/useGetAllRestaurants"
 import { RestaurantsContent } from "./restaurants-content"
+import { RestaurantCommentsSheet } from "./restaurant-commets-sheet"
+import { Restaurant } from "../domain/Restaurant"
 
 
 export default function DashboardPageV() {
@@ -22,6 +24,8 @@ export default function DashboardPageV() {
         locationId: "",
         cuisineId: "",
     })
+    const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null)
+    const [isCommentsSheetOpen, setIsCommentsSheetOpen] = useState(false)
 
     const { data: locationsData } = useGetAllLocations();
     const { data: cuisinesData } = useGetAllCuisineTypes();
@@ -29,6 +33,11 @@ export default function DashboardPageV() {
 
     const clearFilters = () => {
         setFilters({ name: "", locationId: "", cuisineId: "" })
+    }
+
+    const handleViewComments = (restaurant: Restaurant) => {
+        setSelectedRestaurant(restaurant)
+        setIsCommentsSheetOpen(true)
     }
 
     return (
@@ -160,6 +169,7 @@ export default function DashboardPageV() {
                         <RestaurantsContent
                             restaurants={restaurantsData}
                             onClearFilters={clearFilters}
+                            handleViewComments={handleViewComments}
                         />
                     </TabsContent>
 
@@ -192,6 +202,12 @@ export default function DashboardPageV() {
                     </TabsContent>
                 </Tabs>
             </div>
+
+            <RestaurantCommentsSheet
+                isOpen={isCommentsSheetOpen}
+                onOpenChange={setIsCommentsSheetOpen}
+                restaurant={selectedRestaurant}
+            />
         </div>
     )
 }
